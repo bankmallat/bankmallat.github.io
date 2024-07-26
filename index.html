@@ -1,10 +1,1483 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Hello
-</body>
+<html lang="fa">
+    <head>
+        <meta charset="utf-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function checkSetTheme() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                }
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", event=>checkSetTheme());
+            checkSetTheme();
+        </script>
+        <style>
+            @font-face {
+                font-family: IRANSans;
+                font-style: normal;
+                font-weight: 300;
+                src: url('https://myket.ir/fonts/eot/IRANSansWeb.eot?');
+                src: url('https://myket.ir/fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),url('https://myket.ir/fonts/woff2/IRANSansWeb.woff2') format('woff2'),url('https://myket.ir/fonts/woff/IRANSansWeb.woff') format('woff'),url('https://myket.ir/fonts/ttf/IRANSansWeb.ttf') format('truetype');
+                font-display: swap
+            }
+
+            body {
+                margin: 0;
+                direction: rtl;
+                font-size: 14.4px;
+                font-family: sans-serif;
+                line-height: 2;
+                color: var(--text-prim);
+                background-color: var(--bg)
+            }
+
+            body.font-loaded {
+                font-family: IRANSans,Roboto,"Helvetica Neue",sans-serif
+            }
+
+            table {
+                width: calc(100% - 10px);
+                margin: 0 auto;
+                table-layout: fixed;
+                border-collapse: collapse;
+                background-color: transparent;
+                font-size: 13px
+            }
+
+            th {
+                width: 45%;
+                height: 40px;
+                text-align: right;
+                padding: 10px
+            }
+
+            td {
+                width: 55%;
+                height: 40px;
+                text-align: right;
+                padding: 10px
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--blue)
+            }
+
+            *,:after,:before {
+                box-sizing: border-box
+            }
+
+            ::-webkit-scrollbar {
+                height: 4px
+            }
+
+            ::-webkit-scrollbar-track {
+                background: var(--bg)
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: var(--text-hint);
+                border: 3px solid var(--bg);
+                border-radius: 10px
+            }
+
+            .container {
+                padding: 80px;
+                overflow: hidden
+            }
+
+            .text-justify {
+                text-align: justify !important;
+                letter-spacing: -.5px
+            }
+
+            .mobview {
+                display: none !important
+            }
+
+            .hide {
+                display: none
+            }
+
+            .show {
+                display: block
+            }
+
+            .btn-download {
+                background-color: var(--prim-blue);
+                box-shadow: 0 3px 1px -2px rgba(0,0,0,.2);
+                height: 43px;
+                border-radius: 10px;
+                font-weight: bold;
+                padding: 9px 30px;
+                margin: 0 0 5px;
+                font-size: 18px;
+                color: #fff;
+                float: left;
+                text-align: center;
+                white-space: nowrap;
+                max-width: 100%;
+                width: 100%
+            }
+
+            .title {
+                font-size: 21px;
+                font-weight: bold;
+                word-break: break-word;
+                line-height: 1.5;
+                margin: 0
+            }
+
+            .topmenu {
+                position: fixed;
+                width: 100%;
+                z-index: 10;
+                background: var(--bg);
+                padding: 10px 0;
+                box-shadow: 0 2px 1px 1px rgba(0,0,0,.06)
+            }
+
+            .dark .topmenu {
+                background: #000;
+                box-shadow: 0 2px 1px 1px rgba(0,0,0,.2)
+            }
+
+            .topmenu .icon {
+                float: right;
+                margin-right: 100px;
+                width: 120px;
+                height: 38px
+            }
+
+            .topmenu .icon img {
+                width: 120px;
+                height: 38px
+            }
+
+            .topmenu .search {
+                float: left;
+                margin-left: 100px;
+                margin-top: 5px
+            }
+
+            .topmenu .search a {
+                color: var(--prim-blue)
+            }
+
+            .topmenu .search .searchIcon {
+                width: 22px;
+                height: 22px;
+                vertical-align: middle
+            }
+
+            .topmenu .search .btn-solid-lg {
+                border-radius: 12px;
+                line-height: 32px;
+                margin: 0 5px;
+                padding: 0 11px;
+                font-size: 15px
+            }
+
+            .topApp-section {
+                float: right;
+                width: calc(30% - 6px);
+                overflow: hidden;
+                background-color: #efefef;
+                margin: 0 3px;
+                border-radius: 8px;
+                padding: 15px
+            }
+
+            .dark .topApp-section {
+                background-color: #4f4f4f
+            }
+
+            .dark .topApp-title img {
+                filter: invert(1)
+            }
+
+            .app-detail-section {
+                margin-right: 31%;
+                margin-top: 15px;
+                line-height: 2
+            }
+
+            .logo-title-wrapper {
+                display: flex;
+                align-items: center;
+                padding: 5px 0 20px
+            }
+
+            .logo-title-wrapper .appImage {
+                padding: 0;
+                max-width: 90vw;
+                margin: 0 1px 0 15px;
+                width: 110px;
+                height: 110px;
+                float: right
+            }
+
+            .logo-title-wrapper .appImage img {
+                border-radius: 8px
+            }
+
+            .logo-title-wrapper h1 {
+                line-height: 1.4;
+                margin-bottom: 10px;
+                font-size: 20px
+            }
+
+            .logo-title-wrapper h2 {
+                font-size: 13px
+            }
+
+            .install-wrapper {
+                display: flex;
+                margin-bottom: 20px
+            }
+
+            .install-wrapper .btn-download {
+                padding-top: 3px
+            }
+
+            .tbl-app-detail tr:nth-child(odd) {
+                background-color: var(--bg)
+            }
+
+            .tbl-app-detail td:first-child {
+                font-weight: bold;
+                width: 45%
+            }
+
+            .gallery img {
+                border-radius: 10px;
+                cursor: pointer;
+                margin-right: 3px;
+                margin-left: 3px
+            }
+
+            .gallery ul,.related {
+                padding-right: 0;
+                white-space: nowrap;
+                width: 100%;
+                overflow-x: auto
+            }
+
+            .gallery ul li {
+                display: inline
+            }
+
+            .gallery>div {
+                position: relative;
+                width: 100%;
+                overflow: hidden
+            }
+
+            .gallery span {
+                background-color: rgba(255,255,255,.6);
+                overflow: hidden;
+                position: absolute;
+                bottom: 50%;
+                font-size: 30px;
+                color: var(--text-second);
+                display: none;
+                margin-bottom: -25px;
+                cursor: pointer;
+                height: 50px;
+                width: 42px;
+                font-family: Arial;
+                line-height: 50px
+            }
+
+            .dark .gallery span {
+                background-color: rgba(30,30,30,.6)
+            }
+
+            .gallery #slideRight {
+                right: 0;
+                padding-left: 12px
+            }
+
+            .gallery #slideLeft {
+                left: 0;
+                padding-right: 12px
+            }
+
+            .gallery ul::-webkit-scrollbar {
+                display: none
+            }
+
+            .gallery ul {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                margin: 0
+            }
+
+            .related {
+                margin-bottom: 0;
+                overflow-x: hidden
+            }
+
+            .related li {
+                width: 142px;
+                height: auto;
+                cursor: pointer;
+                display: inline-block;
+                vertical-align: top;
+                white-space: normal;
+                margin: 0 1.5px 10px 0;
+                border-radius: 5px;
+                padding: 10px 5px;
+                transition: all .25s linear;
+                min-height: 210px
+            }
+
+            .related li:hover {
+                box-shadow: 0 2px 4px 0 rgba(154,154,154,.8);
+                background-color: var(--tr-grey)
+            }
+
+            .dark .related li:hover {
+                box-shadow: 0 2px 4px 0 rgba(0,0,0,.8)
+            }
+
+            .related .picture {
+                height: 128px;
+                width: 128px;
+                display: block
+            }
+
+            .related img {
+                margin-right: auto;
+                margin-left: auto;
+                border-radius: 16px;
+                object-fit: fill;
+                height: 128px;
+                width: 128px
+            }
+
+            .appname {
+                padding-left: 5px;
+                padding-right: 5px;
+                text-align: right;
+                color: var(--text-second);
+                max-width: 165px;
+                font-size: 14px;
+                font-weight: 300;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                overflow: hidden;
+                line-height: 1.6
+            }
+
+            .appgroup {
+                margin-top: 2px;
+                padding-right: 5px;
+                padding-left: 5px;
+                font-size: 12px;
+                color: var(--text-hint);
+                text-align: right;
+                overflow: hidden;
+                height: 20px
+            }
+
+            .modal {
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: #000;
+                background-color: rgba(0,0,0,.5);
+                z-index: 100
+            }
+
+            .modalImage {
+                margin: auto;
+                display: block;
+                height: auto;
+                max-width: 100%;
+                max-height: 90%
+            }
+
+            .close {
+                position: absolute;
+                top: 15px;
+                right: 16px;
+                color: var(--tr-grey);
+                font-size: 40px;
+                font-weight: bold;
+                transition: .3s;
+                background: #555555d6;
+                border-radius: 117px;
+                line-height: 1;
+                width: 43px;
+                padding-top: 4px;
+                text-align: center
+            }
+
+            .dark .close {
+                background: #b7b7b7d6
+            }
+
+            .close:hover,.close:focus {
+                color: #f00;
+                cursor: pointer
+            }
+
+            .userReviews span {
+                display: inline-block;
+                line-height: 1.5;
+                font-size: 15px
+            }
+
+            .userReviews .ratingTitle {
+                margin: 10px auto 15px
+            }
+
+            .userReviews .ratingTitle p {
+                display: inline-block;
+                margin: 0 0 0 5px
+            }
+
+            .userReviews .ratingTitle .totalRating {
+                float: left
+            }
+
+            .userReviews .starUnicode {
+                color: var(--blue);
+                font-size: 20px;
+                line-height: 30px
+            }
+
+            .userReviews .commentSec {
+                margin-bottom: 25px
+            }
+
+            .userReviews .commentBox {
+                margin: 10px auto;
+                background-color: var(--mid-grey);
+                border-radius: 5px;
+                padding: 15px
+            }
+
+            .userReviews .commentBox>div {
+                display: flex;
+                position: relative
+            }
+
+            .userReviews .commentBox img.avatar {
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                margin-left: 10px
+            }
+
+            .userReviews .commentBox img.thumbsUp {
+                width: 15px;
+                height: 15px;
+                margin: 6px 0 0 5px
+            }
+
+            .userReviews .commentBox img.thumbsDown {
+                width: 15px;
+                height: 15px;
+                margin: 6px 10px 0 5px
+            }
+
+            .dark .userReviews .commentBox img.thumbsUp,.dark .userReviews .commentBox img.thumbsDown {
+                filter: invert(1)
+            }
+
+            .userReviews .commentBox .rateDate {
+                left: 0;
+                position: absolute;
+                top: 14px
+            }
+
+            .userReviews .commentBox>p {
+                white-space: pre-wrap;
+                white-space: -moz-pre-wrap;
+                white-space: -pre-wrap;
+                white-space: -o-pre-wrap;
+                word-wrap: break-word
+            }
+
+            .userReviews .ratingSec .rateItem {
+                display: flex;
+                flex-direction: row;
+                align-items: center
+            }
+
+            .userReviews .ratingSec .ratesLabel {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                white-space: nowrap;
+                color: #8a8a8a;
+                justify-content: space-between;
+                width: 38px;
+                padding-left: .5rem
+            }
+
+            .userReviews .ratingSec .ratesProgress {
+                background-color: #eff0f5;
+                border-radius: 5px;
+                height: 10px;
+                position: relative;
+                overflow: hidden;
+                width: 100%
+            }
+
+            .dark .userReviews .ratingSec .ratesProgress {
+                background-color: #5d5d5d
+            }
+
+            .userReviews .ratingSec .ratesProgress>div {
+                background-color: #8993a4;
+                height: 10px;
+                border-radius: 5px;
+                position: absolute
+            }
+
+            .dark .userReviews .ratingSec .ratesProgress>div {
+                background-color: #b1b8c5
+            }
+
+            .restricted-section {
+                background-color: #fafad2;
+                font-size: 14px;
+                line-height: 1.7;
+                margin: 10px 0;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: justify;
+                color: #580000
+            }
+
+            .dark .restricted-section {
+                background-color: #ffebe0;
+                color: #450000
+            }
+
+            .restricted-app-myket-section {
+                background-color: #d9edf7;
+                padding: 10px 20px 25px;
+                margin: 10px 0;
+                border-radius: 8px
+            }
+
+            .dark .restricted-app-myket-section {
+                background-color: #3b4b53
+            }
+
+            .restricted-app-myket {
+                align-items: center;
+                display: flex
+            }
+
+            .restricted-app-myket img {
+                height: 48px;
+                width: 149px
+            }
+
+            .restricted-app-myket-section .flex {
+                align-items: center;
+                justify-content: space-between;
+                display: flex
+            }
+
+            .restricted-app-myket-items {
+                margin-top: 5px
+            }
+
+            .restricted-app-myket-item {
+                float: right;
+                font-size: 13px;
+                width: 75px;
+                text-align: center;
+                color: var(--text-prim)
+            }
+
+            .dark .restricted-app-myket-item img {
+                filter: invert(1)
+            }
+
+            .restricted-app-myket-item .fa {
+                font-size: 20px;
+                width: 30%;
+                margin: auto auto 2px;
+                display: block
+            }
+
+            .restricted-app-myket-download .btn-download {
+                padding: 5px 35px;
+                background-color: var(--prim-blue);
+                box-shadow: 0 2px 5px #999;
+                border-radius: 12px;
+                height: 45px;
+                max-width: 250px;
+                border: none;
+                font-family: IRANSans
+            }
+
+            .dark .restricted-app-myket-download .btn-download {
+                box-shadow: 0 2px 5px #353a3d
+            }
+
+            .restricted-app-myket-download .btn-download:hover {
+                box-shadow: 0 2px 5px var(--text-second)
+            }
+
+            .banner-list {
+                margin-top: 30px;
+                margin-bottom: 30px
+            }
+
+            .banner-list .title {
+                margin-bottom: 15px
+            }
+
+            .banner-item-wrapper {
+                overflow-x: auto;
+                white-space: nowrap;
+                width: 100%;
+                height: 140px;
+                overflow-y: hidden;
+                -ms-overflow-style: none;
+                scrollbar-width: none
+            }
+
+            .banner-item-wrapper::-webkit-scrollbar {
+                display: none
+            }
+
+            .banner-item {
+                display: inline-block;
+                padding: 0 5px
+            }
+
+            .banner-item a {
+                height: 100%;
+                display: inline-block
+            }
+
+            .banner-item img {
+                width: 231px;
+                height: 130px;
+                border-radius: 8px
+            }
+
+            .loader {
+                border: 3px solid #f3f3f300;
+                border-radius: 50%;
+                border-top: 3px solid #fff;
+                width: 20px;
+                height: 20px;
+                -webkit-animation: spin 1.2s linear infinite;
+                animation: spin 1.2s linear infinite;
+                margin-left: 5px
+            }
+
+            @-webkit-keyframes spin {
+                0% {
+                    -webkit-transform: rotate(0deg)
+                }
+
+                100% {
+                    -webkit-transform: rotate(360deg)
+                }
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg)
+                }
+
+                100% {
+                    transform: rotate(360deg)
+                }
+            }
+
+            #loadingbtn,#loadingbtnmob {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                display: none
+            }
+
+            #loadingbtnmob {
+                margin: 8px 6.5px
+            }
+
+            .breadcrump {
+                margin-bottom: 5px
+            }
+
+            .breadcrump span {
+                font-size: 10px;
+                font-family: Arial
+            }
+
+            .breadcrump a {
+                display: inline-block
+            }
+
+            .blue_dl_btn {
+                background-color: var(--prim-blue) !important
+            }
+
+            footer .container {
+                margin: auto;
+                padding-top: 0;
+                padding-bottom: 0
+            }
+
+            footer .about p:last-child {
+                line-height: 26px !important
+            }
+
+            footer .support .contact-info {
+                align-items: normal !important
+            }
+
+            @media(min-width: 1200px) {
+                .topmenu .icon {
+                    margin-right:80px
+                }
+
+                .topmenu .search {
+                    margin-left: 80px
+                }
+            }
+
+            @media(max-width: 1200px) {
+                .container {
+                    padding:80px 30px
+                }
+
+                .topmenu .icon {
+                    margin-right: 30px
+                }
+
+                .topmenu .search {
+                    margin-left: 30px
+                }
+
+                .banner-item-wrapper {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none
+                }
+
+                .banner-item-wrapper::-webkit-scrollbar {
+                    display: none
+                }
+
+                .topApp-section {
+                    width: calc(35% - 6px)
+                }
+
+                .app-detail-section {
+                    margin-right: 36%
+                }
+            }
+
+            @media(max-width: 1200px) and (min-width:992px) {
+                .restricted-app-myket-item {
+                    font-size:12px;
+                    width: 60px
+                }
+
+                .restricted-app-myket img {
+                    height: 45px;
+                    width: 140px
+                }
+
+                .restricted-app-myket-download .btn-download {
+                    padding: 5px 30px;
+                    height: 44px;
+                    font-size: 17px
+                }
+            }
+
+            @media(max-width: 991px) {
+                .topApp-section {
+                    margin:0;
+                    padding: 0;
+                    width: 100%;
+                    margin-top: 0
+                }
+
+                .app-detail-section {
+                    width: 100%;
+                    margin-right: 0
+                }
+
+                table {
+                    width: 100%;
+                    margin: 0 auto 20px;
+                    table-layout: fixed
+                }
+
+                .restricted-app-myket-section .flex {
+                    display: inline-block;
+                    width: 100%
+                }
+
+                .restricted-app-myket,.restricted-app-myket-items,.restricted-app-myket-download {
+                    width: 100%;
+                    justify-content: center;
+                    display: flex
+                }
+
+                .restricted-app-myket-items {
+                    margin: 20px auto
+                }
+            }
+
+            @media(max-width: 991px) and (min-width:769px) {
+                .topApp-section {
+                    padding:15px
+                }
+
+                .topApp-section.first-section {
+                    display: flex;
+                    align-items: center
+                }
+
+                .logo-title-install-wrapper {
+                    width: 50%;
+                    float: right;
+                    padding-left: 15px
+                }
+
+                .logo-title-wrapper {
+                    display: block
+                }
+
+                .logo-title-wrapper .appImage {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 15px
+                }
+
+                .logo-title-wrapper h1,.logo-title-wrapper h2 {
+                    text-align: center
+                }
+
+                .install-wrapper .btn-download {
+                    max-width: 270px;
+                    margin: auto
+                }
+
+                .tbl-app-detail {
+                    width: 50%;
+                    float: right
+                }
+
+                .tbl-app-detail table {
+                    margin-bottom: 0
+                }
+            }
+
+            @media(max-width: 768px) {
+                .mobview {
+                    display:inline-block !important
+                }
+
+                .dark .topApp-section.first-section {
+                    background-color: var(--bg) !important
+                }
+
+                .container {
+                    padding: 15px;
+                    padding-top: 80px
+                }
+
+                .topmenu .icon {
+                    margin-right: 15px
+                }
+
+                .topmenu .search {
+                    margin-left: 15px
+                }
+
+                .topApp-section {
+                    background: var(--bg)
+                }
+
+                .tbl-app-detail tr:nth-child(odd) {
+                    background-color: #f6f6f6
+                }
+
+                .dark .tbl-app-detail tr:nth-child(odd) {
+                    background-color: #2b2c2d
+                }
+
+                .modal-content {
+                    width: 100%
+                }
+
+                .related {
+                    overflow-x: auto
+                }
+
+                .related li {
+                    height: auto;
+                    margin: 0 0 3px;
+                    width: 131px
+                }
+
+                .related .picture,.related img {
+                    height: 120px;
+                    width: 120px
+                }
+
+                .related::-webkit-scrollbar {
+                    height: 0;
+                    background: transparent
+                }
+
+                .dlPart-bottom img {
+                    width: 47px;
+                    height: 47px;
+                    margin: 8px 15px;
+                    border-radius: 4px;
+                    float: right
+                }
+
+                .dlPart-bottom label {
+                    width: 158px;
+                    margin: 10px 0;
+                    float: right;
+                    align-self: center;
+                    max-height: 45px;
+                    overflow: hidden;
+                    color: var(--text-prim);
+                    font-size: 16px;
+                    line-height: 44px
+                }
+
+                .dlPart-bottom .btn-download {
+                    margin: 13px 15px 10px;
+                    padding: 4px 31px;
+                    height: auto;
+                    width: auto;
+                    font-weight: normal
+                }
+
+                .restricted-section,.restricted-app-myket-section {
+                    margin: 10px 0;
+                    clear: both
+                }
+            }
+
+            footer {
+                background-color: var(--footer-bg);
+                text-align: right;
+                padding: 20px 0 15px;
+                color: var(--text-second);
+                font-weight: 300
+            }
+
+            footer .container {
+                display: block
+            }
+
+            footer .about {
+                max-width: 820px
+            }
+
+            footer .about p:first-child {
+                font-weight: bold;
+                font-size: 16px
+            }
+
+            footer .about p:last-child {
+                font-size: 15px;
+                line-height: 24px;
+                font-weight: 300;
+                margin-bottom: 20px
+            }
+
+            footer .footer-inner-wrapper {
+                display: flex
+            }
+
+            footer .link-part {
+                width: 50%;
+                float: right
+            }
+
+            footer .link-part ul {
+                width: 50%;
+                float: right;
+                padding: 0;
+                margin-top: 10px
+            }
+
+            footer .link-part ul li {
+                list-style-type: none;
+                line-height: 40px
+            }
+
+            footer .link-part a {
+                font-size: 16px;
+                color: var(--text-second)
+            }
+
+            .light footer .link-part a:hover {
+                color: #272727
+            }
+
+            .dark footer .link-part a:hover {
+                color: #fff
+            }
+
+            footer hr {
+                border-color: var(--border-color)
+            }
+
+            footer .support {
+                display: inline-block;
+                width: 25%;
+                float: right;
+                border: 0;
+                padding: 0
+            }
+
+            footer .support .support-title {
+                font-size: 16px;
+                font-weight: bold;
+                margin: 15px 0 25px;
+                text-align: right !important
+            }
+
+            footer .support .contact-info {
+                font-size: 16px;
+                line-height: 35px;
+                display: flex;
+                font-weight: 500;
+                margin-bottom: 10px;
+                align-items: baseline
+            }
+
+            footer .support .contact-info svg {
+                max-width: 30px;
+                max-height: 25px;
+                margin-left: 10px
+            }
+
+            footer .support .footer-social {
+                margin-top: 15px;
+                text-align: right !important
+            }
+
+            footer .support .footer-social svg {
+                border-radius: 100%;
+                margin-right: 0;
+                margin-left: 2px;
+                width: 35px;
+                height: 35px;
+                display: inline
+            }
+
+            footer .namad {
+                width: 25%;
+                float: right;
+                text-align: center;
+                margin-top: 10px
+            }
+
+            footer .namad img:first-child {
+                width: 125px;
+                height: 136px;
+                display: inline-block
+            }
+
+            footer .namad img:last-child {
+                width: 136px;
+                height: 136px;
+                display: inline-block
+            }
+
+            footer .cprinfo {
+                text-align: center;
+                font-size: 15px;
+                margin-top: 15px
+            }
+
+            footer .cprinfo a {
+                color: var(--text-second);
+                font-weight: bold
+            }
+
+            footer .cprinfo a:hover {
+                color: var(--text-second)
+            }
+
+            @media(min-width: 1200px) {
+                footer .container {
+                    max-width:1400px;
+                    padding: 0 15px
+                }
+            }
+
+            @media(max-width: 1200px) {
+                footer .container {
+                    max-width:100%;
+                    width: 100%
+                }
+
+                footer .about {
+                    max-width: 100%
+                }
+
+                footer .support {
+                    width: 28%
+                }
+
+                footer .namad {
+                    width: 22%
+                }
+            }
+
+            @media(max-width: 991px) {
+                footer {
+                    display:flex
+                }
+
+                footer .footer-inner-wrapper {
+                    display: table
+                }
+
+                footer .link-part {
+                    width: 100%
+                }
+
+                footer .link-part a {
+                    font-weight: 500
+                }
+
+                footer .support {
+                    width: 50%
+                }
+
+                footer .support .support-title {
+                    margin: 15px 0
+                }
+
+                footer .support .contact-info {
+                    line-height: 40px !important
+                }
+
+                footer .support .contact-info svg {
+                    max-width: 30px;
+                    max-height: 25px;
+                    margin-left: 10px
+                }
+
+                footer .support .footer-social svg {
+                    width: 38px !important;
+                    height: 38px !important;
+                    margin-left: 3px
+                }
+
+                footer .support .footer-social svg:last-child {
+                    margin: 0
+                }
+
+                footer .namad {
+                    width: 50%;
+                    padding: 0 10px
+                }
+
+                footer .namad img:first-child {
+                    width: 121px;
+                    height: 132px
+                }
+
+                footer .namad img:last-child {
+                    width: 132px;
+                    height: 132px
+                }
+            }
+
+            @media(max-width: 576px) {
+                footer .about p:first-child {
+                    font-weight:bold;
+                    line-height: 1.5;
+                    text-align: justify
+                }
+
+                footer .about p:last-child {
+                    margin-bottom: 30px
+                }
+
+                footer .link-part ul li {
+                    line-height: 45px
+                }
+
+                footer .link-part a {
+                    font-weight: 500
+                }
+
+                footer .support {
+                    width: 100%;
+                    margin-bottom: 20px
+                }
+
+                footer .support .support-title,footer .support .footer-social {
+                    text-align: center !important
+                }
+
+                footer .support .contact-info {
+                    text-align: center;
+                    display: block;
+                    margin-bottom: 0
+                }
+
+                footer .support .contact-info svg {
+                    display: none
+                }
+
+                footer .namad {
+                    width: 100%;
+                    padding: 0
+                }
+            }
+
+            :root.light {
+                --prim-blue: #07f;
+                --blue: #0091ea;
+                --tr-prim-blue: #00b0ff;
+                --tr-blue: #ecf5fe;
+                --tr-grey: #f7f7f7;
+                --mid-grey: #eee;
+                --grey: #808080;
+                --text-prim: #333;
+                --text-second: #4d4d4f;
+                --text-hint: #999;
+                --bg: #fbfbfb;
+                --border-color: #95959536;
+                --footer-bg: #f6f6f6;
+                --header-bg: #ffffffb3
+            }
+
+            :root.dark {
+                --prim-blue: #07f;
+                --blue: #00b0ff;
+                --tr-prim-blue: #00b0ff;
+                --tr-blue: #2d343d;
+                --tr-grey: #242629;
+                --mid-grey: #444547;
+                --grey: green;
+                --text-prim: #e0e0e0;
+                --text-second: #ddd;
+                --text-hint: #a7a7a7;
+                --bg: #212121;
+                --border-color: #95959536;
+                --footer-bg: #363638;
+                --header-bg: #030303a6
+            }
+        </style>
+        <title>دانلود همراه بانک ملت | برنامه اختصاصی بانک ملت</title>
+   </head>
+    <body>
+        <div class="container">
+            <section class="topApp-section first-section">
+                <div class="logo-title-install-wrapper">
+                    <div class="logo-title-wrapper">
+                        <div class="appImage">
+                            <img src="https://myket.ir/app-icon/com.pmb.mobile_6025aaad-8e2b-420c-83a8-e89bc78e6764.png" alt="همراه بانک ملت" width="110" height="110">
+                        </div>
+                        <div>
+                            <h1>همراه بانک ملت</h1>
+                            <h2>بانک ملت همیشه همراه شما</h2>
+                        </div>
+                    </div>
+                    <div class="install-wrapper">
+                        <a class="btn-download utm-download-button-detail utm-download-source-detail" href="Mellat.apk" title="همراه بانک ملت" rel="nofollow">
+                            <span id="basebtn">نصب</span>
+                            <span id="loadingbtn">
+                                <i class="loader"></i>
+                                در حال دریافت... 
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="tbl-app-detail">
+                    <table>
+                        <tr>
+                            <td>نسخه</td>
+                            <td>۱.۳.۲</td>
+                        </tr>
+                        <tr>
+                            <td>آخرین بروزرسانی</td>
+                            <td>۱۴۰۲/۱۲/۰۹</td>
+                        </tr>
+                        <tr>
+                            <td>تعداد دانلود</td>
+                            <td>۳ میلیون</td>
+                        </tr>
+                        <tr>
+                            <td>امتیاز</td>
+                            <td>۴.۵</td>
+                        </tr>
+                        <tr>
+                            <td>تعداد نظرات</td>
+                            <td>۲۱,۷۷۹</td>
+                        </tr>
+                        <tr>
+                            <td>حجم</td>
+                            <td>۴۳ مگابایت</td>
+                        </tr>
+                        <tr>
+                            <td>نوع</td>
+                            <td>
+                                <a href="" class="text-primary" title="برنامه">برنامه اندرویدی </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>دسته‌بندی</td>
+                            <td>
+                                <a href="" class="text-primary" title="امور مالی">امور مالی </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>سازنده</td>
+                            <td>
+                                <a href="" class="text-primary" title="مالی و پرداخت" rel="nofollow">مالی و پرداخت </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section class="app-detail-section" style="margin-top:0">
+                <div class="text-justify">
+                    <div class="gallery">
+                        <div>
+                            <ul id="gallerySlider">
+                                <li>
+                                    <img class="ImgThumbnail" loading="lazy" alt="اسکرین شات برنامه همراه بانک ملت 1" src="https://assets.myket.ir/screenshots/xlarge/com.pmb.mobile/8ee6e5bf-f8f4-427d-b605-a105305e8d60.png" data-src="https://assets.myket.ir/screenshots/original/com.pmb.mobile/8ee6e5bf-f8f4-427d-b605-a105305e8d60.png" height="220" width="123.75">
+                                </li>
+                                <li>
+                                    <img class="ImgThumbnail" loading="lazy" alt="اسکرین شات برنامه همراه بانک ملت 2" src="https://assets.myket.ir/screenshots/xlarge/com.pmb.mobile/c2f9b650-48d3-4881-b846-dd3bdf4d0add.png" data-src="https://assets.myket.ir/screenshots/original/com.pmb.mobile/c2f9b650-48d3-4881-b846-dd3bdf4d0add.png" height="220" width="123.75">
+                                </li>
+                                <li>
+                                    <img class="ImgThumbnail" loading="lazy" alt="اسکرین شات برنامه همراه بانک ملت 3" src="https://assets.myket.ir/screenshots/xlarge/com.pmb.mobile/7320fbff-4aab-456c-83fa-43adb25aced3.png" data-src="https://assets.myket.ir/screenshots/original/com.pmb.mobile/7320fbff-4aab-456c-83fa-43adb25aced3.png" height="220" width="123.75">
+                                </li>
+                                <li>
+                                    <img class="ImgThumbnail" loading="lazy" alt="اسکرین شات برنامه همراه بانک ملت 4" src="https://assets.myket.ir/screenshots/xlarge/com.pmb.mobile/b5636181-815e-404a-8db8-3dd7645ba13c.png" data-src="https://assets.myket.ir/screenshots/original/com.pmb.mobile/b5636181-815e-404a-8db8-3dd7645ba13c.png" height="220" width="123.75">
+                                </li>
+                                <li>
+                                    <img class="ImgThumbnail" loading="lazy" alt="اسکرین شات برنامه همراه بانک ملت 5" src="https://assets.myket.ir/screenshots/xlarge/com.pmb.mobile/4cf95f34-a93d-4e20-bde6-53502d9064b1.png" data-src="https://assets.myket.ir/screenshots/original/com.pmb.mobile/4cf95f34-a93d-4e20-bde6-53502d9064b1.png" height="220" width="123.75">
+                                </li>
+                            </ul>
+                            <span id="slideRight">〈</span>
+                            <span id="slideLeft">〉</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="app-detail-section">
+   
+                <div class="text-justify">
+                    <div class="app-text text-justify word-break text-right" dir="rtl" style="margin-bottom:20px">
+                        <div class="margin-bottom-5">
+                            <p>
+                                <strong>بانک ملت</strong>
+                                از جمله بانک &zwnj;های پرمشتری است که افراد بسیار زیادی در آن حساب باز کرده &zwnj;اند. دسترسی آنلاین به خدمات و عملیات &zwnj;های بانکی یکی از مهم &zwnj;ترین نیازهای این روزهای مشتریان بانک &zwnj;هاست و بانک ملت نیز یکی از بانک &zwnj;های پیشرو در این زمینه است. <strong>بانک ملت اپلیکیشن</strong>
+                                خود به نام <strong>همراه بانک ملت</strong>
+                                را به عنوان پنجره &zwnj;ای برای ارائه خدمات آنلاین خود انتخاب کرده است. این اپلیکیشن جامع ویژگی &zwnj;های مختلفی را در خود جای داده و به کمک آن هم می &zwnj;توانید کارت به کارت کنید، هم قبض پرداخت کنید و هم شارژ بخرید.&nbsp;
+                            </p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <h2>دسترسی ساده به همراه بانک ملت</h2>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>بانک ملت خدمات گسترده &zwnj;ای را ارائه می &zwnj;دهد. یکی از این خدمات، انتقال وجه از روش &zwnj;های مختلف است که جزو عملیات &zwnj;های پرتکرار مشتریان در طول روز به شمار می &zwnj;آید. کارت به کارت یکی از این روش &zwnj;هاست که بسیاری از افراد از آن برای انتقال مبالغ نه چندان بالا استفاده می &zwnj;کنند. با اپلیکیشن همراه بانک ملت شما به راحتی می &zwnj;توانید وجود مدنظر خود را از روش &zwnj;های مختلفی مثل کارت به کارت، پایا و &hellip;منتقل نمایید.&nbsp;</p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>استفاده از اپلیکیشن همراه بانک ملت بسیار ساده است و به همین خاطر، انتقال وجه با این برنامه نیز پروسه &zwnj;ای سریع و راحت دارد. قابلیت &zwnj;هایی مثل ذخیره شماره کارت &zwnj;های مورد علاقه و &hellip;نیز به شما کمک می &zwnj;کنند تا انتقال وجه سریعی داشته باشید.&nbsp;</p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>برنامه همراه بانک ملت در دیگر تراکنش &zwnj;ها هم در کنار شماست. مثلا، پرداخت قبوض یکی دیگر از تراکنش &zwnj;های همیشگی ما در زندگی روزمره است و شما می &zwnj;توانید با این برنامه خیال &zwnj;تان را بابت پرداخت قبض &zwnj;ها هم راحت کنید. از سوی دیگر، خرید شارژ و بسته اینترنت برای سیم &zwnj;کارت هم از جمله دیگر نیازهای پرتقاضاست و بانک ملت با این برنامه اختصاصی خود به دنبال رفع آن نیاز هم بوده است.&nbsp;</p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>در زمینه &zwnj;های دیگر هم می &zwnj;توانید روی این برنامه حساب کنید، مثل استعلام ضمانت &zwnj;نامه &zwnj;های ریالی و ارزی. از جهت دیگر، شما می &zwnj;توانید بحث گردش حساب خود و البته تراکنش &zwnj;های قدیمی &zwnj;تان را هم مشاهده کنید تا چیزی از قلم نیفتد.</p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>اپلیکیشن همراه بانک ملت، یک برنامه ضروری برای افرادی است که از مشتریان این بانک قدیمی و مطرح هستند و می &zwnj;خواهند دسترسی سریعی به خدمات بانکی داشته باشند.</p>
+                        </div>
+                        <div class="margin-bottom-5">&nbsp;</div>
+                        <div class="margin-bottom-5">
+                            <p>
+                                <strong>ویژگی &zwnj;های برنامه:</strong>
+                            </p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>
+                                <strong>.</strong>
+                                انتقال وجه از طریق کارت به کارت و روش &zwnj;های دیگر
+                            </p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>
+                                <strong>.</strong>
+                                پرداخت قبوض
+                            </p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>
+                                <strong>.</strong>
+                                خرید شارژ و اینترنت
+                            </p>
+                        </div>
+                        <div class="margin-bottom-5">
+                            <p>
+                                <strong>.</strong>
+                                تاریخچه تراکنش &zwnj;ها
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <label>
+                            <i class="fa fa-info-circle"></i>
+                            تغییرات در نسخه جدید 
+                        </label>
+                        <div style="padding:16px">
+                            <div class="text-justify text-right" dir="rtl">
+                                ‏‏آخرین تغییرات همراه بانک ملت نسخه 1.3.2 به شرح زیر است:<br>
+                                <br>
+                                ‏اضافه شدن درخواست ارسال صدور کارت اولیه و المثنی با نوع تحویل به آدرس مشتری<br>
+                                ‏دریافت و فعال‌سازی کارت(تحویل کارت به مشتری و تعریف رمز اولیه کارت)<br>
+                                ‏اصلاح تعیین سقف کارت<br>
+                                ‏گزارش پیگیری درخواست کارت<br>
+                                ‏فعال‌سازی سامانه همراه بانک با استفاده از اطلاعات کارت بانک ملت یا برنامه کاربردی امضای ملت<br>
+                                ‏اضافه شدن مشخصه حساب تجاری در خدمت ثبت درخواست صدور دسته چک برای حساب‌های تجاری<br>
+                                ‏اضافه شدن مشخصه حساب تجاری در صفحه اصلی سامانه همراه بانک در جزئیات اطلاعات حساب<br>
+                                ‏اضافه شدن استعلام مسدودی و رفع مسدودی ذیل منوی استعلام در منوی کشویی سامانه همراه‌بانک<br>‏امکان کپی نمودن شماره حساب، شماره شبا و شماره کارت از صفحه اصلی سامانه همراه بانک
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+        </footer>
+        <div class="modal">
+            <span class="close">×</span>
+            <img class="modalImage" id="img01">
+        </div>
+    </body>
 </html>
